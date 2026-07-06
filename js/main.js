@@ -1,45 +1,48 @@
-// js/main.js
 $(document).ready(function() {
-    
-    // 1. Hiệu ứng Hover mượt mà cho menu hoặc các bài viết liên quan
+    // 1. Tạo hiệu ứng tương tác trực quan khi rê chuột vào các bài viết (Hot Content)
     $('.topic-card').hover(
-        function() { $(this).addClass('shadow-effect'); },
-        function() { $(this).removeClass('shadow-effect'); }
+        function() { $(this).addClass('highlight-card'); },
+        function() { $(this).removeClass('highlight-card'); }
     );
 
-    // 2. Xử lý Đăng nhập phía Client cơ bản
+    // 2. Kiểm tra dữ liệu đăng nhập bằng JQuery phía Client
     $('#loginForm').on('submit', function(e) {
-        e.preventDefault();
-        let username = $('#username').val();
-        if(username === "") {
-            alert("Vui lòng nhập tên đăng nhập!");
+        e.preventDefault(); // Chặn việc reload lại trang
+        let username = $('#username').val().trim();
+        let password = $('#password').val().trim();
+
+        if (username === "" || password === "") {
+            alert("Lỗi: Vui lòng nhập đầy đủ Tài khoản và Mật khẩu!");
         } else {
-            alert("Chào mừng thành viên " + username + " quay trở lại!");
-            window.location.href = "index.html";
+            alert("Đăng nhập thành công! Chào mừng thành viên: " + username);
+            window.location.href = "index.html"; // Chuyển về trang chủ sau khi đăng nhập thành công
         }
     });
 
-    // 3. Xử lý thêm comment tức thì tại các trang chi tiết bài viết
-    $('#submit-comment').click(function() {
-        let commenterName = $('#commenter-name').val();
-        let commentText = $('#comment-content').val();
+    // 3. Xử lý gửi phản hồi/bình luận không tải lại trang (Append động)
+    $('#btn-comment').click(function() {
+        let name = $('#cmt-name').val().trim();
+        let content = $('#cmt-content').val().trim();
 
-        if (commenterName && commentText) {
-            let newComment = `
-                <div class="user-comment" style="display:none; border-bottom:1px dashed #ccc; padding:10px 0;">
-                    <strong>${commenterName}:</strong>
-                    <p>${commentText}</p>
-                </div>
-            `;
-            // Chèn vào danh sách comment và tạo hiệu ứng hiện hình mượt mà
-            $('.comments-list').append(newComment);
-            $('.user-comment').last().fadeIn(500);
-            
-            // Xóa trắng form sau khi submid
-            $('#commenter-name').val('');
-            $('#comment-content').val('');
-        } else {
-            alert("Vui lòng điền đầy đủ tên và nội dung phản hồi!");
+        if (name === "" || content === "") {
+            alert("Vui lòng điền tên và nội dung bình luận!");
+            return;
         }
+
+        // Tạo cấu trúc comment mới
+        let newComment = `
+            <div class="comment-item" style="display:none;">
+                <strong>📌 ${name}:</strong>
+                <p style="margin-top:5px; color:#555;">${content}</p>
+            </div>
+        `;
+
+        // Đẩy comment mới vào danh sách và dùng hiệu ứng slideDown/fadeIn của JQuery để hiển thị mượt mà
+        $('.comments-list').prepend(newComment);
+        $('.comment-item').first().slideDown(400);
+
+        // Reset lại form viết comment
+        $('#cmt-name').val('');
+        $('#cmt-content').val('');
     });
 });
