@@ -1,0 +1,40 @@
+/* css/style.css */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    border-bottom: 1px solid #eee;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #111;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.menu li a:hover, .menu li a.active {
+    color: #bfa15f; /* Màu vàng beige quý phái */
+}
+
+/* Định dạng lưới bài viết */
+.topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 5%;
+}
