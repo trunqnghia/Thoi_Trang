@@ -1,17 +1,33 @@
-/* css/style.css */
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: #333;
-    background-color: #fff;
+/* Import font chữ hiện đại */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #111;
+    background-color: #fafafa;
+    line-height: 1.6;
+}
+
+/* --- HEADER & MENU --- */
 header {
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
-    border-bottom: 1px solid #eee;
+    padding: 25px 8%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .menu {
@@ -19,22 +35,122 @@ header {
     list-style: none;
 }
 
+.menu li {
+    margin-left: 20px;
+}
+
 .menu li a {
     text-decoration: none;
-    color: #111;
-    padding: 10px 20px;
-    font-weight: 500;
-    transition: color 0.3s;
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
 }
 
 .menu li a:hover, .menu li a.active {
-    color: #bfa15f; /* Màu vàng beige quý phái */
+    color: #bfa15f; /* Màu vàng sang trọng */
+    font-weight: 600;
 }
 
-/* Định dạng lưới bài viết */
+/* --- MAIN CONTENT & GRID --- */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
 .topics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 40px 5%;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.topic-card {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease;
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+}
+
+.topic-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Giúp ảnh không bị méo */
+}
+
+.topic-card-content {
+    padding: 20px;
+}
+
+.topic-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.read-more {
+    display: inline-block;
+    text-decoration: none;
+    color: #bfa15f;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 1px solid #bfa15f;
+    padding-bottom: 2px;
+}
+
+/* --- FOOTER & SITEMAP --- */
+footer {
+    background-color: #111;
+    color: #fff;
+    padding: 50px 8% 20px;
+    margin-top: 80px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.sitemap h4 {
+    color: #bfa15f;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.sitemap ul {
+    list-style: none;
+}
+
+.sitemap ul li {
+    margin-bottom: 8px;
+}
+
+.sitemap ul li a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.sitemap ul li a:hover {
+    color: #fff;
+}
+
+footer p {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    border-top: 1px solid #222;
+    padding-top: 20px;
 }
